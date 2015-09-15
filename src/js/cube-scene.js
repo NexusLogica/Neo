@@ -6,23 +6,39 @@ var renderer = new THREE.WebGLRenderer();
 renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
 
-var geometry = new THREE.BoxGeometry( 9, 9, 9 );
-//var material = new THREE.MeshPhongMaterial( { color: 0xff55ff } );
-var material = new THREE.MeshLambertMaterial({color: 0xff55ff, transparent: true, opacity: 0.3});
-var cube = new THREE.Mesh( geometry, material );
-scene.add( cube );
+//var geometry = new THREE.BoxGeometry( 9, 9, 9 );
+////var material = new THREE.MeshPhongMaterial( { color: 0xff55ff } );
+//var material = new THREE.MeshLambertMaterial({color: 0xff55ff, transparent: true, opacity: 0.3});
+//var cube = new THREE.Mesh( geometry, material );
+//scene.add( cube );
+//
+//var geometry2 = new THREE.BoxGeometry( 1, 1, 1 );
+//var material2 = new THREE.MeshPhongMaterial( { color: 0xff99ff } );
+//var cube2 = new THREE.Mesh( geometry2, material2 );
+//scene.add( cube2 );
+//cube2.position.x=2;
+//
+//var geometry3 = new THREE.BoxGeometry( 1, 1, 1 );
+//var material3 = new THREE.MeshPhongMaterial( { color: 0xffffff } );
+//var cube3 = new THREE.Mesh( geometry3, material3 );
+//scene.add( cube3 );
+//cube3.position.x=-2;
 
-var geometry2 = new THREE.BoxGeometry( 1, 1, 1 );
-var material2 = new THREE.MeshPhongMaterial( { color: 0xff99ff } );
-var cube2 = new THREE.Mesh( geometry2, material2 );
-scene.add( cube2 );
-cube2.position.x=2;
+console.log(1);
+console.log(2);
+var x=0.0;
 
-var geometry3 = new THREE.BoxGeometry( 1, 1, 1 );
-var material3 = new THREE.MeshPhongMaterial( { color: 0xffffff } );
-var cube3 = new THREE.Mesh( geometry3, material3 );
-scene.add( cube3 );
-cube3.position.x=-2;
+for(var i=1; i<10; i++){
+    var name="cube"+i;
+    x=x+1;
+    console.log(name) ;
+    var geometry = new THREE.BoxGeometry( 1,1,1 );
+    var material = new THREE.MeshLambertMaterial({color: 0xff55ff, transparent: true, opacity: 0.3});
+    var cube = new THREE.Mesh( geometry, material );
+    cube.position.x=x;
+    cube.name=name;
+    scene.add( cube );
+}
 
 camera.position.z = 15;
 
@@ -39,12 +55,15 @@ function addLights() {
 var render = function () {
     requestAnimationFrame( render );
 
-    cube.rotation.x += 0.01;
-    cube.rotation.y += 0.01;
-    cube2.rotation.x += 0.01;
-    cube2.rotation.y += 0.01;
-    cube3.rotation.x += 0.01;
-    cube3.rotation.y += 0.01;
+    for(var j=0; j<10; j++)  {
+        var cube = scene.getObjectByName("cube"+j, true );
+        cube.rotation.x += 0.01;
+        cube.rotation.y += 0.01;
+    }
+    //cube2.rotation.x += 0.01;
+    //cube2.rotation.y += 0.01;
+    //cube3.rotation.x += 0.01;
+    //cube3.rotation.y += 0.01;
 
 
     renderer.render(scene, camera);
