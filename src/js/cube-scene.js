@@ -30,10 +30,10 @@ var x=0.0;
 
 for(var i=1; i<10; i++){
     var name="cube"+i;
-    x=x+1;
+    x=x+2;
     console.log(name) ;
     var geometry = new THREE.BoxGeometry( 1,1,1 );
-    var material = new THREE.MeshLambertMaterial({color: 0xff55ff, transparent: true, opacity: 0.3});
+    var material = new THREE.MeshLambertMaterial({color: 0xff55ff, transparent:false, opacity: 0.3});
     var cube = new THREE.Mesh( geometry, material );
     cube.position.x=x;
     cube.name=name;
@@ -55,7 +55,7 @@ function addLights() {
 var render = function () {
     requestAnimationFrame( render );
 
-    for(var j=0; j<10; j++)  {
+    for(var j=1; j<10; j++)  {
         var cube = scene.getObjectByName("cube"+j, true );
         cube.rotation.x += 0.01;
         cube.rotation.y += 0.01;
