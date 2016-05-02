@@ -32,10 +32,11 @@ for(var i=1; i<10; i++){
     var name="cube"+i;
     x=x+2;
     console.log(name) ;
-    var geometry = new THREE.BoxGeometry( 1,1,1 );
-    var material = new THREE.MeshLambertMaterial({color: 0xff55ff, transparent:false, opacity: 0.3});
+    var geometry = new THREE.BoxGeometry( 1+0.7*i,1,1 );
+    var material = new THREE.MeshLambertMaterial({color: 0x220000*i, transparent:false, opacity: 1});
     var cube = new THREE.Mesh( geometry, material );
-    cube.position.x=x;
+    cube.position.x=x-9;
+    cube.position.y=0;
     cube.name=name;
     scene.add( cube );
 }
@@ -48,7 +49,7 @@ function addLights() {
     var dirLight = new THREE.DirectionalLight(0xffffff, 1);
     dirLight.position.set(100, 100, 50);
     scene.add(dirLight);
-    var ambLight = new THREE.AmbientLight(0x404040);
+    var ambLight = new THREE.AmbientLight(0xffffffffffffff);
     scene.add(ambLight);
 };
 
