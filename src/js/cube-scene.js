@@ -6,6 +6,8 @@ var renderer = new THREE.WebGLRenderer();
 renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
 
+var renderSignal = new signals.Signal();
+
 //var geometry = new THREE.BoxGeometry( 9, 9, 9 );
 ////var material = new THREE.MeshPhongMaterial( { color: 0xff55ff } );
 //var material = new THREE.MeshLambertMaterial({color: 0xff55ff, transparent: true, opacity: 0.3});
@@ -53,20 +55,40 @@ function addLights() {
     scene.add(ambLight);
 };
 
+var raycaster = new THREE.Raycaster();
+
+var canvas3d = $('canvas');
+var width = canvas3d.innerWidth();
+var height = canvas3d.innerHeight();
+var mousePosition = new THREE.Vector2();
+
+canvas3d.on('click', function(event) {
+    var posX = canvas3d.offset().left;
+    var posY = canvas3d.offset().top;
+    mousePosition.x = 2.0*(event.pageX - posX)/width-1.0;
+    mousePosition.y = -(2.0*(event.pageY - posY)/height-1.0);
+
+    // Update the picking ray with the camera and mouse position
+    raycaster.setFromCamera(mousePosition, camera);
+
+    // calculate objects intersecting the picking ray
+    var intersects = raycaster.intersectObjects(scene.children, true);
+    if(intersects.length > 0) {
+        var clickedObject = intersects[0];
+        // Now do something interesting with the clickedObject.
+    }
+});
+
 var render = function () {
     requestAnimationFrame( render );
+
+    renderSignal.dispatch();
 
     for(var j=1; j<10; j++)  {
         var cube = scene.getObjectByName("cube"+j, true );
         cube.rotation.x += 0.01;
         cube.rotation.y += 0.01;
     }
-    //cube2.rotation.x += 0.01;
-    //cube2.rotation.y += 0.01;
-    //cube3.rotation.x += 0.01;
-    //cube3.rotation.y += 0.01;
-
-
     renderer.render(scene, camera);
 };
 
