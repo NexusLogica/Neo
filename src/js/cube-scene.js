@@ -33,7 +33,27 @@ for(var i=1; i<10; i++){
     x=x+2;
     console.log(name) ;
     var geometry = new THREE.BoxGeometry( 1+0.7*i,1,1 );
-    var material = new THREE.MeshLambertMaterial({color: 0x220000*i, transparent:false, opacity: 1});
+    var colorValue = 0x220000*i;
+    if (i==1) {
+        colorValue=0xff0000
+    }
+    else if (i==2) {
+        colorValue=0xff8000
+    }
+    else if (i==3) {
+        colorValue=0xffff00
+    }
+    else if (i==4) {
+        colorValue=0x00ff00
+    }
+
+
+    //if(i<4) {
+    //    colorValue=0x00ff00;
+    //} else if (i>6) {
+    //    colorValue=0x0000ff
+    //}
+    var material = new THREE.MeshLambertMaterial({color: colorValue, transparent:false, opacity: 1});
     var cube = new THREE.Mesh( geometry, material );
     cube.position.x=x-9;
     cube.position.y=0;
