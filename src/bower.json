@@ -1,0 +1,12 @@
+{
+  "name": "neo",
+  "version": "0.0.2",
+  "dependencies": {
+    "jquery": "2.1.4",
+    "lodash": "3.10.1",
+    "momentjs": "2.4.0",
+    "q": "1.0.1",
+    "signals": "git://github.com/millermedeiros/js-signals",
+    "threejs": "git://github.com/mrdoob/three.js/"
+  }
+}
