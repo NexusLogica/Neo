@@ -78,6 +78,11 @@ canvas3d.on('click', function(event) {
     if(intersects.length > 0) {
         var clickedObject = intersects[0];
         clickedObject.object.material.color.setRGB(0,0,1);
+        var done = checkIfWon();
+        if(done){
+            showCongradulations();
+        }
+
         // Now do something interesting with the clickedObject.
     }
 });
@@ -96,6 +101,10 @@ setInterval(function(){
     randomizeColors();
 },3000);
 
+function checkIfWon (){
+    return true;
+}
+
 var render = function () {
     requestAnimationFrame( render );
 
@@ -108,7 +117,9 @@ var render = function () {
     }
     renderer.render(scene, camera);
 };
-
+function showCongradulations(){
+    alert("Congradulations!")
+}
 render();
 
 
