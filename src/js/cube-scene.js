@@ -95,20 +95,27 @@ canvas3d.on('click', function(event) {
     var intersects = raycaster.intersectObjects(scene.children, true);
     if(intersects.length > 0) {
         var clickedObject = intersects[0];
+        clickedObject.object.material.color.setRGB(0,0,1);
         // Now do something interesting with the clickedObject.
     }
 });
+
+var count=0;
+setInterval(function(){
+    console.log("count="+count);
+    count++;
+},5000);
 
 var render = function () {
     requestAnimationFrame( render );
 
     renderSignal.dispatch();
 
-    for(var j=1; j<10; j++)  {
-        var cube = scene.getObjectByName("cube"+j, true );
-        cube.rotation.x += 0.01;
-        cube.rotation.y += 0.01;
-    }
+    //for(var j=1; j<10; j++)  {
+    //    var cube = scene.getObjectByName("cube"+j, true );
+    //    cube.rotation.x += 0.01;
+    //    cube.rotation.y += 0.01;
+    //}
     renderer.render(scene, camera);
 };
 
