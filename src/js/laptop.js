@@ -1,0 +1,7 @@
+/**
+ * Laptops
+ */
+
+var Laptop = function() {
+
+};
